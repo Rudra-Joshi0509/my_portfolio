@@ -99,22 +99,35 @@
         .orb-1 { width: 500px; height: 500px; background: #2563eb; top: -100px; left: -100px; }
         .orb-2 { width: 400px; height: 400px; background: #7c3aed; bottom: -50px; right: -50px; }
 
-        /* --- 5. NAVIGATION (DEFAULT DESKTOP) --- */
+        /* --- 5. NAVIGATION (DESKTOP & MOBILE SHARED) --- */
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 20px 50px;
-            background: rgba(5, 5, 7, 0.8);
+            padding: 20px 50px; /* Desktop Padding */
+            background: rgba(5, 5, 7, 0.9); /* Make background darker so it's readable */
             backdrop-filter: blur(10px);
             display: flex;
-            justify-content: space-between;
-            z-index: 100;
+            justify-content: space-between; /* Pushes Logo Left, Links Right */
+            align-items: center;
+            z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
         }
         
-        .logo { font-weight: 700; letter-spacing: 1px; font-size: 1.2rem; }
+        .logo { 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            font-size: 1.2rem; 
+            color: var(--text);
+        }
+        
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-items a {
             color: var(--text-muted);
             text-decoration: none;
@@ -230,52 +243,42 @@
 
 
         /* =========================================
-           MOBILE RESPONSIVE & FLOATING BOTTOM NAV
+           MOBILE RESPONSIVE ADJUSTMENTS
            ========================================= */
         @media(max-width: 768px) {
             
-            /* 1. MOBILE NAVIGATION CAPSULE */
+            /* 1. FIX NAVBAR LAYOUT FOR MOBILE */
             nav {
-                top: auto;              /* Remove from top */
-                bottom: 30px;           /* Move to bottom */
-                width: 85%;             /* Make it compact */
-                left: 50%;
-                transform: translateX(-50%); /* Center it */
-                border-radius: 50px;    /* Pill shape */
-                padding: 15px 0;        /* Slim padding */
-                justify-content: center; 
-                background: rgba(20, 20, 30, 0.9); /* Darker */
-                box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 20px 20px; /* Reduce side padding so it fits */
             }
 
             .logo {
-                display: none; /* Hide Logo on Mobile */
+                font-size: 1.1rem;
+                display: block; /* Ensure logo is visible */
             }
 
             .nav-items {
-                width: 100%;
-                display: flex;
-                justify-content: space-evenly; /* Spread links evenly */
+                gap: 15px; /* Small gap between links */
             }
 
             .nav-items a {
-                margin: 0;
-                font-size: 1rem;
-                color: #fff;
-                font-weight: 600;
+                margin-left: 0; /* Remove large desktop margins */
+                font-size: 0.85rem; /* Make text slightly smaller to fit */
             }
 
-            /* 2. CONTENT ADJUSTMENTS */
+            /* 2. FIX HERO TEXT SIZE */
             h1 { font-size: 3rem; }
+            
+            /* 3. FIX ABOUT IMAGE STACKING */
             .about-container { flex-direction: column-reverse; }
             .about-img-box { height: 300px; width: 100%; }
             
-            /* 3. HIDE PC CURSOR */
+            /* 4. HIDE PC CURSOR */
             .cursor-dot, .cursor-ring { display: none; }
             
-            /* 4. ADD PADDING SO NAV DOESNT COVER CONTENT */
-            body { padding-bottom: 100px; }
+            /* 5. BUTTONS STACKING */
+            .hero-btns { display: flex; flex-direction: column; gap: 15px; }
+            .btn { margin-right: 0; text-align: center; }
         }
 
     </style>
@@ -292,8 +295,12 @@
         <div class="orb orb-2" id="orb2"></div>
     </div>
 
+    <!-- NAVIGATION -->
     <nav>
+        <!-- NAME ON LEFT -->
         <div class="logo hover-target">RUDRA.</div>
+        
+        <!-- LINKS ON RIGHT -->
         <div class="nav-items">
             <a href="#about" class="hover-target">About</a>
             <a href="#projects" class="hover-target">Work</a>
@@ -334,7 +341,7 @@
         </div>
     </section>
 
-    <!-- EDUCATION (CORRECTED) -->
+    <!-- EDUCATION -->
     <section id="education">
         <div class="hidden">
             <h2>Education Path</h2>
