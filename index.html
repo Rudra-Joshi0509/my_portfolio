@@ -99,17 +99,17 @@
         .orb-1 { width: 500px; height: 500px; background: #2563eb; top: -100px; left: -100px; }
         .orb-2 { width: 400px; height: 400px; background: #7c3aed; bottom: -50px; right: -50px; }
 
-        /* --- 5. NAVIGATION (DESKTOP & MOBILE SHARED) --- */
+        /* --- 5. NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 20px 50px; /* Desktop Padding */
-            background: rgba(5, 5, 7, 0.9); /* Make background darker so it's readable */
+            background: rgba(5, 5, 7, 0.9);
             backdrop-filter: blur(10px);
             display: flex;
-            justify-content: space-between; /* Pushes Logo Left, Links Right */
+            justify-content: space-between; /* Logo Left, Links Right */
             align-items: center;
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -131,7 +131,7 @@
         .nav-items a {
             color: var(--text-muted);
             text-decoration: none;
-            margin-left: 30px;
+            margin-left: 30px; /* Spacing between links */
             transition: 0.3s;
             font-size: 0.9rem;
         }
@@ -247,36 +247,36 @@
            ========================================= */
         @media(max-width: 768px) {
             
-            /* 1. FIX NAVBAR LAYOUT FOR MOBILE */
+            /* 1. NAVBAR: PRESERVE LEFT-RIGHT LAYOUT */
             nav {
-                padding: 20px 20px; /* Reduce side padding so it fits */
+                padding: 15px 20px; /* Reduce padding so it fits */
             }
 
             .logo {
-                font-size: 1.1rem;
-                display: block; /* Ensure logo is visible */
+                font-size: 1rem; /* Smaller logo */
             }
 
             .nav-items {
-                gap: 15px; /* Small gap between links */
+                display: flex;
+                gap: 15px; /* Tight spacing between links */
             }
 
             .nav-items a {
-                margin-left: 0; /* Remove large desktop margins */
-                font-size: 0.85rem; /* Make text slightly smaller to fit */
+                margin-left: 0; /* Remove big margin */
+                font-size: 0.8rem; /* Smaller font to fit on line */
             }
 
-            /* 2. FIX HERO TEXT SIZE */
+            /* 2. FIX HERO TEXT */
             h1 { font-size: 3rem; }
             
-            /* 3. FIX ABOUT IMAGE STACKING */
+            /* 3. FIX ABOUT SECTION */
             .about-container { flex-direction: column-reverse; }
             .about-img-box { height: 300px; width: 100%; }
             
             /* 4. HIDE PC CURSOR */
             .cursor-dot, .cursor-ring { display: none; }
             
-            /* 5. BUTTONS STACKING */
+            /* 5. STACK BUTTONS */
             .hero-btns { display: flex; flex-direction: column; gap: 15px; }
             .btn { margin-right: 0; text-align: center; }
         }
@@ -297,10 +297,7 @@
 
     <!-- NAVIGATION -->
     <nav>
-        <!-- NAME ON LEFT -->
         <div class="logo hover-target">RUDRA.</div>
-        
-        <!-- LINKS ON RIGHT -->
         <div class="nav-items">
             <a href="#about" class="hover-target">About</a>
             <a href="#projects" class="hover-target">Work</a>
