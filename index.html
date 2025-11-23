@@ -99,7 +99,7 @@
         .orb-1 { width: 500px; height: 500px; background: #2563eb; top: -100px; left: -100px; }
         .orb-2 { width: 400px; height: 400px; background: #7c3aed; bottom: -50px; right: -50px; }
 
-        /* --- 5. NAVIGATION --- */
+        /* --- 5. NAVIGATION (DEFAULT DESKTOP) --- */
         nav {
             position: fixed;
             top: 0;
@@ -111,6 +111,7 @@
             justify-content: space-between;
             z-index: 100;
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
         }
         
         .logo { font-weight: 700; letter-spacing: 1px; font-size: 1.2rem; }
@@ -227,18 +228,61 @@
         .hidden { opacity: 0; transform: translateY(50px); transition: all 1s; }
         .show { opacity: 1; transform: translateY(0); }
 
-        /* --- MOBILE FIXES --- */
+
+        /* =========================================
+           MOBILE RESPONSIVE & FLOATING BOTTOM NAV
+           ========================================= */
         @media(max-width: 768px) {
+            
+            /* 1. MOBILE NAVIGATION CAPSULE */
+            nav {
+                top: auto;              /* Remove from top */
+                bottom: 30px;           /* Move to bottom */
+                width: 85%;             /* Make it compact */
+                left: 50%;
+                transform: translateX(-50%); /* Center it */
+                border-radius: 50px;    /* Pill shape */
+                padding: 15px 0;        /* Slim padding */
+                justify-content: center; 
+                background: rgba(20, 20, 30, 0.9); /* Darker */
+                box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .logo {
+                display: none; /* Hide Logo on Mobile */
+            }
+
+            .nav-items {
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly; /* Spread links evenly */
+            }
+
+            .nav-items a {
+                margin: 0;
+                font-size: 1rem;
+                color: #fff;
+                font-weight: 600;
+            }
+
+            /* 2. CONTENT ADJUSTMENTS */
             h1 { font-size: 3rem; }
             .about-container { flex-direction: column-reverse; }
             .about-img-box { height: 300px; width: 100%; }
-            .cursor-dot, .cursor-ring { display: none; } /* Use touch effect instead */
+            
+            /* 3. HIDE PC CURSOR */
+            .cursor-dot, .cursor-ring { display: none; }
+            
+            /* 4. ADD PADDING SO NAV DOESNT COVER CONTENT */
+            body { padding-bottom: 100px; }
         }
+
     </style>
 </head>
 <body>
 
-    <!-- CURSOR ELEMENTS -->
+    <!-- CURSOR ELEMENTS (PC Only) -->
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
 
@@ -290,7 +334,7 @@
         </div>
     </section>
 
-    <!-- EDUCATION (UPDATED) -->
+    <!-- EDUCATION (CORRECTED) -->
     <section id="education">
         <div class="hidden">
             <h2>Education Path</h2>
