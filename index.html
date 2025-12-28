@@ -38,57 +38,256 @@
             overflow-x: hidden;
         }
 
+        /* ============================================
+           MOBILE TOUCH CURSOR - Professional Edition
+           ============================================ */
+        
+        /* Main touch cursor container - only visible on touch devices */
+        .mobile-touch-cursor {
+            display: none;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Core cursor element */
+        .touch-cursor-core {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--accent), #a855f7, #ec4899);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 0 20px var(--accent),
+                0 0 40px rgba(168, 85, 247, 0.5),
+                0 0 60px rgba(236, 72, 153, 0.3);
+        }
+
+        .touch-cursor-core.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Outer ring with rotation animation */
+        .touch-cursor-ring {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 2px solid transparent;
+            border-top-color: var(--accent);
+            border-right-color: #a855f7;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0) rotate(0deg);
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: none;
+        }
+
+        .touch-cursor-ring.active {
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            animation: cursorSpin 1s linear infinite;
+        }
+
+        @keyframes cursorSpin {
+            0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+        }
+
+        /* Secondary pulsing ring */
+        .touch-cursor-pulse {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .touch-cursor-pulse.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.5;
+            animation: cursorPulse 1.5s ease-out infinite;
+        }
+
+        @keyframes cursorPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        /* Hexagon shape decoration */
+        .touch-cursor-hex {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            transform: translate(-50%, -50%) scale(0) rotate(30deg);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .touch-cursor-hex.active {
+            transform: translate(-50%, -50%) scale(1) rotate(30deg);
+            animation: hexRotate 3s linear infinite;
+        }
+
+        @keyframes hexRotate {
+            0% { transform: translate(-50%, -50%) scale(1) rotate(30deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(390deg); }
+        }
+
+        .touch-cursor-hex::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: 1px solid rgba(168, 85, 247, 0.6);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        /* Particle trails */
+        .touch-cursor-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+
+        .touch-cursor-particle.active {
+            animation: particleFloat 0.8s ease-out forwards;
+        }
+
+        .touch-cursor-particle:nth-child(1) { animation-delay: 0s; }
+        .touch-cursor-particle:nth-child(2) { animation-delay: 0.1s; background: #a855f7; }
+        .touch-cursor-particle:nth-child(3) { animation-delay: 0.2s; background: #ec4899; }
+        .touch-cursor-particle:nth-child(4) { animation-delay: 0.15s; background: #22d3ee; }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx, 30px), var(--ty, -30px)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Crosshair lines */
+        .touch-cursor-crosshair {
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+        .touch-cursor-crosshair span {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scale(0);
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .touch-cursor-crosshair span:nth-child(1),
+        .touch-cursor-crosshair span:nth-child(2) {
+            width: 60px;
+            height: 1px;
+            left: -30px;
+            top: 0;
+        }
+
+        .touch-cursor-crosshair span:nth-child(3),
+        .touch-cursor-crosshair span:nth-child(4) {
+            width: 1px;
+            height: 60px;
+            left: 0;
+            top: -30px;
+            background: linear-gradient(180deg, transparent, #a855f7, transparent);
+        }
+
+        .touch-cursor-crosshair.active span {
+            transform: scale(1);
+        }
+
+        /* Corner brackets */
+        .touch-cursor-brackets {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .touch-cursor-brackets.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .touch-cursor-brackets span {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid var(--accent);
+        }
+
+        .touch-cursor-brackets span:nth-child(1) {
+            top: 0; left: 0;
+            border-right: none; border-bottom: none;
+        }
+        .touch-cursor-brackets span:nth-child(2) {
+            top: 0; right: 0;
+            border-left: none; border-bottom: none;
+        }
+        .touch-cursor-brackets span:nth-child(3) {
+            bottom: 0; left: 0;
+            border-right: none; border-top: none;
+        }
+        .touch-cursor-brackets span:nth-child(4) {
+            bottom: 0; right: 0;
+            border-left: none; border-top: none;
+        }
+
+        /* Touch trail effect */
+        .touch-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99998;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Only show on touch devices / small screens */
+        @media (max-width: 1024px) and (pointer: coarse) {
+            .mobile-touch-cursor {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-touch-cursor {
+                display: block;
+            }
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-
-        /* Custom Cursor & Touch Trail */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-            display: none;
-        }
-
-        @media (min-width: 769px) {
-            .cursor-dot {
-                display: block;
-                width: 8px; height: 8px;
-                background: var(--accent);
-            }
-            .cursor-outline {
-                display: block;
-                width: 40px; height: 40px;
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                transition: width 0.2s, height 0.2s, background-color 0.2s;
-            }
-            body.hover-active .cursor-outline {
-                width: 60px; height: 60px;
-                background: rgba(99, 102, 241, 0.1);
-                border-color: var(--accent);
-            }
-            /* Hide Default Cursor */
-            * { cursor: none !important; }
-        }
-
-        .touch-trail {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: trailAnim 0.8s ease-out forwards;
-            filter: blur(1px);
-        }
-
-        @keyframes trailAnim {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-        }
 
         /* Navigation */
         nav {
@@ -1154,13 +1353,46 @@
 </head>
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <!-- Mobile Touch Cursor -->
+    <div class="mobile-touch-cursor" id="mobileCursor">
+        <!-- Pulsing outer ring -->
+        <div class="touch-cursor-pulse" id="cursorPulse"></div>
+        
+        <!-- Corner brackets -->
+        <div class="touch-cursor-brackets" id="cursorBrackets">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Hexagon decoration -->
+        <div class="touch-cursor-hex" id="cursorHex"></div>
+        
+        <!-- Spinning ring -->
+        <div class="touch-cursor-ring" id="cursorRing"></div>
+        
+        <!-- Crosshair lines -->
+        <div class="touch-cursor-crosshair" id="cursorCrosshair">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Core dot -->
+        <div class="touch-cursor-core" id="cursorCore"></div>
+        
+        <!-- Particles -->
+        <div class="touch-cursor-particle" id="particle1" style="--tx: 40px; --ty: -30px;"></div>
+        <div class="touch-cursor-particle" id="particle2" style="--tx: -35px; --ty: -25px;"></div>
+        <div class="touch-cursor-particle" id="particle3" style="--tx: 30px; --ty: 35px;"></div>
+        <div class="touch-cursor-particle" id="particle4" style="--tx: -40px; --ty: 30px;"></div>
+    </div>
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">Rudra.</div>
+        <div class="logo">RUDRA JOSHI</div>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
@@ -1637,65 +1869,144 @@
     </footer>
 
     <script>
-        // Custom Cursor Logic
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
+        // ============================================
+        // MOBILE TOUCH CURSOR - Professional Edition
+        // ============================================
+        
+        const mobileCursor = document.getElementById('mobileCursor');
+        const cursorCore = document.getElementById('cursorCore');
+        const cursorRing = document.getElementById('cursorRing');
+        const cursorPulse = document.getElementById('cursorPulse');
+        const cursorHex = document.getElementById('cursorHex');
+        const cursorCrosshair = document.getElementById('cursorCrosshair');
+        const cursorBrackets = document.getElementById('cursorBrackets');
+        const particles = [
+            document.getElementById('particle1'),
+            document.getElementById('particle2'),
+            document.getElementById('particle3'),
+            document.getElementById('particle4')
+        ];
 
-        // PC Cursor Movement
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            window.addEventListener('mousemove', (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-                
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-                
-                cursorOutline.animate({
-                    left: `${posX}px`,
-                    top: `${posY}px`
-                }, { duration: 500, fill: "forwards" });
-            });
+        let isTouch = false;
+        let touchTimeout;
+        let trailElements = [];
+        const maxTrails = 8;
 
-            // Hover Effects
-            const interactables = document.querySelectorAll('a, button, .project-card, .skill-card, .service-card, input, textarea');
-            interactables.forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+        // Create trail elements
+        for (let i = 0; i < maxTrails; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'touch-trail';
+            document.body.appendChild(trail);
+            trailElements.push({
+                element: trail,
+                x: 0,
+                y: 0,
+                active: false
             });
         }
 
-        // Mobile Touch Trail Logic
-        document.addEventListener('touchmove', (e) => {
-            const touches = e.touches;
-            for (let i = 0; i < touches.length; i++) {
-                createTrail(touches[i].clientX, touches[i].clientY);
-            }
-        });
+        // Detect if device supports touch
+        function isTouchDevice() {
+            return (('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0) ||
+                (navigator.msMaxTouchPoints > 0)) &&
+                window.innerWidth <= 1024;
+        }
 
-        function createTrail(x, y) {
-            const trail = document.createElement('div');
-            trail.classList.add('touch-trail');
-            trail.style.left = `${x}px`;
-            trail.style.top = `${y}px`;
-            
-            // Random size
-            const size = Math.random() * 10 + 5;
-            trail.style.width = `${size}px`;
-            trail.style.height = `${size}px`;
+        // Activate cursor elements
+        function activateCursor(x, y) {
+            mobileCursor.style.left = x + 'px';
+            mobileCursor.style.top = y + 'px';
 
-            // Random colors for cool effect
-            const colors = ['#6366f1', '#a855f7', '#ec4899', '#10b981', '#22d3ee'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            trail.style.background = color;
-            trail.style.boxShadow = `0 0 10px ${color}`;
-            
-            document.body.appendChild(trail);
+            cursorCore.classList.add('active');
+            cursorRing.classList.add('active');
+            cursorPulse.classList.add('active');
+            cursorHex.classList.add('active');
+            cursorCrosshair.classList.add('active');
+            cursorBrackets.classList.add('active');
+
+            // Activate particles with staggered animation
+            particles.forEach((particle, index) => {
+                setTimeout(() => {
+                    particle.classList.remove('active');
+                    void particle.offsetWidth; // Trigger reflow
+                    particle.classList.add('active');
+                }, index * 50);
+            });
+        }
+
+        // Deactivate cursor elements
+        function deactivateCursor() {
+            cursorCore.classList.remove('active');
+            cursorRing.classList.remove('active');
+            cursorPulse.classList.remove('active');
+            cursorHex.classList.remove('active');
+            cursorCrosshair.classList.remove('active');
+            cursorBrackets.classList.remove('active');
+            particles.forEach(particle => particle.classList.remove('active'));
+        }
+
+        // Update trail effect
+        let trailIndex = 0;
+        function updateTrail(x, y) {
+            if (!isTouchDevice()) return;
+
+            const trail = trailElements[trailIndex];
+            trail.element.style.left = x + 'px';
+            trail.element.style.top = y + 'px';
+            trail.element.style.opacity = '0.6';
+            trail.element.style.transform = 'translate(-50%, -50%) scale(1)';
             
             setTimeout(() => {
-                trail.remove();
-            }, 600);
+                trail.element.style.opacity = '0';
+                trail.element.style.transform = 'translate(-50%, -50%) scale(0.5)';
+            }, 100);
+
+            trailIndex = (trailIndex + 1) % maxTrails;
         }
+
+        // Touch event handlers
+        document.addEventListener('touchstart', function(e) {
+            if (!isTouchDevice()) return;
+            
+            isTouch = true;
+            const touch = e.touches[0];
+            activateCursor(touch.clientX, touch.clientY);
+            updateTrail(touch.clientX, touch.clientY);
+
+            clearTimeout(touchTimeout);
+        }, { passive: true });
+
+        document.addEventListener('touchmove', function(e) {
+            if (!isTouchDevice() || !isTouch) return;
+            
+            const touch = e.touches[0];
+            mobileCursor.style.left = touch.clientX + 'px';
+            mobileCursor.style.top = touch.clientY + 'px';
+            updateTrail(touch.clientX, touch.clientY);
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+            if (!isTouchDevice()) return;
+            
+            isTouch = false;
+            
+            // Keep cursor visible briefly after touch ends
+            touchTimeout = setTimeout(() => {
+                deactivateCursor();
+            }, 300);
+        }, { passive: true });
+
+        document.addEventListener('touchcancel', function(e) {
+            if (!isTouchDevice()) return;
+            
+            isTouch = false;
+            deactivateCursor();
+        }, { passive: true });
+
+        // ============================================
+        // EXISTING SCRIPTS
+        // ============================================
 
         // Scroll Reveal Animation
         const observer = new IntersectionObserver((entries) => {
