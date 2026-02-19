@@ -1388,804 +1388,6 @@
 .mobile-menu-btn.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
-
-/* ==========================================
-   GOD LEVEL HOVER EFFECTS - DESKTOP ONLY
-   ========================================== */
-
-/* Magnetic Hover Effect Container */
-.magnetic-hover {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* GOD LEVEL - Skill Card Hover */
-@media (min-width: 1025px) {
-    .skill-card {
-        position: relative;
-        overflow: hidden;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-    }
-
-    .skill-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--accent), #a855f7, #ec4899, #22d3ee, var(--accent));
-        background-size: 300% 100%;
-        transform: scaleX(0);
-        transition: transform 0.4s;
-    }
-
-    .skill-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                    rgba(99, 102, 241, 0.15) 0%, 
-                    transparent 50%);
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-    }
-
-    .skill-card:hover {
-        transform: translateY(-15px) rotateX(5deg) rotateY(-5deg) scale(1.05);
-        border-color: transparent;
-        box-shadow: 
-            0 25px 60px rgba(99, 102, 241, 0.3),
-            0 0 0 1px var(--accent),
-            inset 0 0 60px rgba(99, 102, 241, 0.1);
-    }
-
-    .skill-card:hover::before {
-        transform: scaleX(1);
-        animation: borderGradient 2s linear infinite;
-    }
-
-    .skill-card:hover::after {
-        opacity: 1;
-    }
-
-    .skill-card:hover .skill-icon {
-        animation: iconBounce 0.6s ease-out, iconGlow 1.5s ease-in-out infinite;
-        transform: scale(1.2) rotate(10deg);
-    }
-
-    @keyframes borderGradient {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 300% 50%; }
-    }
-
-    @keyframes iconBounce {
-        0%, 100% { transform: scale(1.2) rotate(10deg); }
-        50% { transform: scale(1.4) rotate(-5deg); }
-    }
-
-    @keyframes iconGlow {
-        0%, 100% { filter: drop-shadow(0 0 10px var(--accent)); }
-        50% { filter: drop-shadow(0 0 25px #a855f7); }
-    }
-
-    /* GOD LEVEL - Project Card Hover */
-    .project-card {
-        position: relative;
-        transform-style: preserve-3d;
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .project-card::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(45deg, 
-            var(--accent), #a855f7, #ec4899, #22d3ee, #10b981, var(--accent));
-        background-size: 400% 400%;
-        border-radius: 26px;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.5s;
-    }
-
-    .project-card:hover {
-        transform: translateY(-20px) rotateX(8deg) scale(1.02);
-        box-shadow: 
-            0 40px 80px rgba(99, 102, 241, 0.4),
-            0 0 100px rgba(168, 85, 247, 0.2);
-    }
-
-    .project-card:hover::before {
-        opacity: 1;
-        animation: borderRotate 3s linear infinite;
-    }
-
-    .project-card:hover .project-image {
-        transform: scale(1.1);
-    }
-
-    .project-card:hover .project-image::after {
-        opacity: 0.4;
-        animation: shimmer 1.5s ease-in-out infinite;
-    }
-
-    .project-image {
-        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    @keyframes borderRotate {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    @keyframes shimmer {
-        0% { opacity: 0.2; }
-        50% { opacity: 0.5; }
-        100% { opacity: 0.2; }
-    }
-
-    /* GOD LEVEL - Service Card Hover */
-    .service-card {
-        position: relative;
-        overflow: hidden;
-        transform-style: preserve-3d;
-    }
-
-    .service-card::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--accent) 60deg,
-            transparent 120deg
-        );
-        opacity: 0;
-        transition: opacity 0.5s;
-        animation: rotateConic 4s linear infinite paused;
-    }
-
-    .service-card::after {
-        content: '';
-        position: absolute;
-        inset: 2px;
-        background: var(--bg);
-        border-radius: 22px;
-        z-index: 0;
-    }
-
-    .service-card > * {
-        position: relative;
-        z-index: 1;
-    }
-
-    .service-card:hover {
-        transform: translateY(-15px) scale(1.03);
-        box-shadow: 0 30px 70px rgba(99, 102, 241, 0.3);
-    }
-
-    .service-card:hover::before {
-        opacity: 1;
-        animation-play-state: running;
-    }
-
-    .service-card:hover .service-icon {
-        transform: rotateY(360deg) scale(1.1);
-        box-shadow: 0 0 40px var(--accent-glow);
-    }
-
-    .service-icon {
-        transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
-    }
-
-    @keyframes rotateConic {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    /* GOD LEVEL - Button Hover */
-    .btn-primary {
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-    }
-
-    .btn-primary::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: radial-gradient(circle, #ec4899 0%, #a855f7 50%, var(--accent) 100%);
-        transition: width 0.6s, height 0.6s;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-    }
-
-    .btn-primary:hover::before {
-        width: 400px;
-        height: 400px;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 
-            0 25px 60px var(--accent-glow),
-            0 0 40px rgba(168, 85, 247, 0.4),
-            inset 0 0 20px rgba(255, 255, 255, 0.1);
-        animation: buttonPulse 1s ease-in-out infinite;
-    }
-
-    @keyframes buttonPulse {
-        0%, 100% { box-shadow: 0 25px 60px var(--accent-glow), 0 0 40px rgba(168, 85, 247, 0.4); }
-        50% { box-shadow: 0 30px 80px var(--accent-glow), 0 0 60px rgba(236, 72, 153, 0.4); }
-    }
-
-    .btn-secondary {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-secondary::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
-        transition: left 0.5s;
-    }
-
-    .btn-secondary:hover::before {
-        left: 100%;
-    }
-
-    .btn-secondary:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
-        border-color: var(--accent);
-        background: rgba(99, 102, 241, 0.1);
-    }
-
-    /* GOD LEVEL - Social Link Hover */
-    .social-link {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .social-link::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, var(--accent), #a855f7, #ec4899);
-        transform: translateY(100%);
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .social-link:hover {
-        transform: translateY(-8px) rotate(5deg) scale(1.1);
-        box-shadow: 
-            0 20px 40px var(--accent-glow),
-            0 0 0 2px var(--accent);
-        animation: socialBounce 0.5s ease-out;
-    }
-
-    .social-link:hover::before {
-        transform: translateY(0);
-    }
-
-    @keyframes socialBounce {
-        0% { transform: translateY(-8px) rotate(5deg) scale(1.1); }
-        50% { transform: translateY(-15px) rotate(-5deg) scale(1.15); }
-        100% { transform: translateY(-8px) rotate(5deg) scale(1.1); }
-    }
-
-    /* GOD LEVEL - Why Item Hover */
-    .why-item {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .why-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, 
-            rgba(99, 102, 241, 0.1) 0%, 
-            rgba(168, 85, 247, 0.1) 50%,
-            rgba(236, 72, 153, 0.1) 100%);
-        transform: translateX(-100%);
-        transition: transform 0.5s;
-    }
-
-    .why-item:hover {
-        transform: translateY(-10px) translateX(10px);
-        border-color: var(--accent);
-        box-shadow: 
-            -10px 10px 0 rgba(99, 102, 241, 0.3),
-            0 20px 40px rgba(99, 102, 241, 0.2);
-    }
-
-    .why-item:hover::before {
-        transform: translateX(0);
-    }
-
-    .why-item:hover .why-icon {
-        transform: scale(1.2) rotate(-10deg);
-        box-shadow: 0 0 30px var(--accent-glow);
-    }
-
-    .why-icon {
-        transition: transform 0.4s, box-shadow 0.4s;
-    }
-
-    /* GOD LEVEL - Contact Method Hover */
-    .contact-method {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .contact-method::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(180deg, var(--accent), #a855f7, #ec4899);
-        transform: scaleY(0);
-        transition: transform 0.4s;
-    }
-
-    .contact-method::after {
-        content: '';
-        position: absolute;
-        right: -50%;
-        top: 50%;
-        width: 100%;
-        height: 300%;
-        background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-        transform: translateY(-50%);
-        opacity: 0;
-        transition: opacity 0.4s, right 0.4s;
-    }
-
-    .contact-method:hover {
-        transform: translateX(15px) scale(1.02);
-        border-color: var(--accent);
-        box-shadow: 
-            0 10px 40px rgba(99, 102, 241, 0.2),
-            inset 0 0 30px rgba(99, 102, 241, 0.05);
-    }
-
-    .contact-method:hover::before {
-        transform: scaleY(1);
-    }
-
-    .contact-method:hover::after {
-        opacity: 1;
-        right: 0;
-    }
-
-    .contact-method:hover .contact-method-icon {
-        transform: scale(1.15) rotate(5deg);
-        box-shadow: 0 0 30px var(--accent-glow);
-    }
-
-    .contact-method-icon {
-        transition: transform 0.4s, box-shadow 0.4s;
-    }
-
-    /* GOD LEVEL - Nav Link Hover */
-    .nav-links a:not(.nav-cta) {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .nav-links a:not(.nav-cta)::before {
-        content: attr(href);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        background: linear-gradient(135deg, var(--accent), #a855f7);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transform: translateY(100%);
-        transition: transform 0.3s;
-    }
-
-    .nav-links a:not(.nav-cta):hover {
-        -webkit-text-fill-color: transparent;
-    }
-
-    .nav-links a:not(.nav-cta)::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--accent), #a855f7, #ec4899);
-        transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .nav-links a:not(.nav-cta):hover::after {
-        width: 100%;
-    }
-
-    /* GOD LEVEL - Nav CTA Hover */
-    .nav-cta {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.4s !important;
-    }
-
-    .nav-cta::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(45deg, var(--accent), #a855f7, #ec4899, #22d3ee);
-        background-size: 300% 300%;
-        border-radius: 32px;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.4s;
-    }
-
-    .nav-cta:hover {
-        transform: translateY(-3px) scale(1.05) !important;
-        box-shadow: 
-            0 15px 40px var(--accent-glow),
-            0 0 20px rgba(168, 85, 247, 0.3) !important;
-    }
-
-    .nav-cta:hover::before {
-        opacity: 1;
-        animation: navCtaGradient 2s ease infinite;
-    }
-
-    @keyframes navCtaGradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* GOD LEVEL - Stat Card Hover */
-    .stat-card {
-        position: relative;
-        transition: all 0.4s;
-    }
-
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 16px;
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-        opacity: 0;
-        transition: opacity 0.4s;
-    }
-
-    .stat-card:hover {
-        transform: translateY(-10px) scale(1.05);
-    }
-
-    .stat-card:hover::before {
-        opacity: 1;
-    }
-
-    .stat-card:hover .stat-value {
-        animation: statPulse 0.6s ease-out;
-        text-shadow: 0 0 30px var(--accent-glow);
-    }
-
-    @keyframes statPulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
-
-    /* GOD LEVEL - Form Input Focus */
-    .form-group input,
-    .form-group textarea {
-        position: relative;
-        transition: all 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: var(--accent);
-        box-shadow: 
-            0 0 0 3px rgba(99, 102, 241, 0.2),
-            0 10px 30px rgba(99, 102, 241, 0.1);
-        transform: translateY(-2px);
-    }
-
-    /* GOD LEVEL - Submit Button Hover */
-    .submit-btn {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .submit-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, 
-            transparent, 
-            rgba(255, 255, 255, 0.3), 
-            transparent);
-        transition: left 0.5s;
-    }
-
-    .submit-btn:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 
-            0 25px 60px var(--accent-glow),
-            0 0 40px rgba(168, 85, 247, 0.3);
-    }
-
-    .submit-btn:hover::before {
-        left: 100%;
-    }
-
-    /* GOD LEVEL - Logo Hover */
-    .logo {
-        transition: all 0.4s;
-        position: relative;
-    }
-
-    .logo:hover {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 20px var(--accent-glow));
-        animation: logoGlitch 0.5s ease-out;
-    }
-
-    @keyframes logoGlitch {
-        0%, 100% { transform: scale(1.1) translateX(0); }
-        20% { transform: scale(1.1) translateX(-3px); }
-        40% { transform: scale(1.1) translateX(3px); }
-        60% { transform: scale(1.1) translateX(-2px); }
-        80% { transform: scale(1.1) translateX(2px); }
-    }
-
-    /* GOD LEVEL - Profile Image Hover */
-    .profile-image:hover {
-        transform: scale(1.05) rotateY(-5deg) rotateX(5deg);
-        border-color: var(--accent);
-        box-shadow: 
-            0 30px 80px var(--accent-glow),
-            0 0 60px rgba(168, 85, 247, 0.3),
-            inset 0 0 40px rgba(99, 102, 241, 0.1);
-        animation: imageHover 0.6s ease-out;
-    }
-
-    @keyframes imageHover {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.08) rotateY(-8deg) rotateX(8deg); }
-        100% { transform: scale(1.05) rotateY(-5deg) rotateX(5deg); }
-    }
-
-    /* GOD LEVEL - Footer Link Hover */
-    .footer-links a {
-        position: relative;
-        transition: all 0.3s;
-    }
-
-    .footer-links a::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--accent), #a855f7);
-        transition: all 0.3s;
-        transform: translateX(-50%);
-    }
-
-    .footer-links a:hover {
-        color: var(--accent);
-        transform: translateY(-3px);
-        text-shadow: 0 0 10px var(--accent-glow);
-    }
-
-    .footer-links a:hover::after {
-        width: 100%;
-    }
-
-    /* GOD LEVEL - About Image Hover */
-    .about-image {
-        transition: all 0.5s;
-    }
-
-    .about-image:hover {
-        transform: scale(1.03) rotate(-1deg);
-        box-shadow: 
-            0 30px 60px rgba(99, 102, 241, 0.3),
-            0 0 0 3px var(--accent);
-    }
-
-    /* GOD LEVEL - Section Tag Hover */
-    .section-tag {
-        transition: all 0.4s;
-    }
-
-    .section-tag:hover {
-        transform: scale(1.1);
-        background: var(--accent);
-        color: white;
-        box-shadow: 0 10px 30px var(--accent-glow);
-    }
-
-    /* Ripple Effect for Clicks */
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(99, 102, 241, 0.4);
-        transform: scale(0);
-        animation: rippleEffect 0.6s ease-out;
-        pointer-events: none;
-    }
-
-    @keyframes rippleEffect {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-}
-
-/* ==========================================
-   MOBILE SCROLL ANIMATIONS
-   ========================================== */
-
-@media (max-width: 1024px) {
-    /* Mobile Scroll Animation Classes */
-    .mobile-scroll-fade-up {
-        opacity: 0;
-        transform: translateY(60px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-scroll-fade-up.animate {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .mobile-scroll-fade-left {
-        opacity: 0;
-        transform: translateX(-80px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-scroll-fade-left.animate {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .mobile-scroll-fade-right {
-        opacity: 0;
-        transform: translateX(80px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-scroll-fade-right.animate {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .mobile-scroll-scale {
-        opacity: 0;
-        transform: scale(0.8);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-scroll-scale.animate {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .mobile-scroll-rotate {
-        opacity: 0;
-        transform: rotate(-10deg) scale(0.9);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-scroll-rotate.animate {
-        opacity: 1;
-        transform: rotate(0) scale(1);
-    }
-
-    .mobile-scroll-flip {
-        opacity: 0;
-        transform: perspective(1000px) rotateX(45deg);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-scroll-flip.animate {
-        opacity: 1;
-        transform: perspective(1000px) rotateX(0);
-    }
-
-    .mobile-scroll-zoom {
-        opacity: 0;
-        transform: scale(0.5);
-        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .mobile-scroll-zoom.animate {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .mobile-scroll-bounce {
-        opacity: 0;
-        transform: translateY(80px);
-        transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .mobile-scroll-bounce.animate {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Staggered Delays for Cards */
-    .mobile-stagger-1 { transition-delay: 0.1s !important; }
-    .mobile-stagger-2 { transition-delay: 0.2s !important; }
-    .mobile-stagger-3 { transition-delay: 0.3s !important; }
-    .mobile-stagger-4 { transition-delay: 0.4s !important; }
-    .mobile-stagger-5 { transition-delay: 0.5s !important; }
-    .mobile-stagger-6 { transition-delay: 0.6s !important; }
-
-    /* Mobile Tap Effect */
-    .mobile-tap-effect {
-        transition: transform 0.2s !important;
-    }
-
-    .mobile-tap-effect:active {
-        transform: scale(0.95) !important;
-    }
-
-    /* Enhanced Mobile Touch Feedback */
-    .skill-card:active,
-    .project-card:active,
-    .service-card:active,
-    .contact-method:active,
-    .why-item:active {
-        transform: scale(0.97);
-        opacity: 0.9;
-    }
-
-    .btn:active {
-        transform: scale(0.95);
-    }
-
-    .social-link:active {
-        transform: scale(0.9);
-    }
-}
     </style>
 </head>
 <body>
@@ -2426,7 +1628,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section - UPDATED WITH SIMPLER PROJECTS -->
     <section id="projects">
         <div class="section-header fade-in">
             <span class="section-tag">My Work</span>
@@ -2435,6 +1637,7 @@
         </div>
         
         <div class="projects-grid">
+            <!-- Project 1: Portfolio Website -->
             <div class="project-card fade-in">
                 <div class="project-image">🎨</div>
                 <div class="project-content">
@@ -2445,9 +1648,13 @@
                     </div>
                     <h3>Personal Portfolio Website</h3>
                     <p>A responsive portfolio website with smooth animations, dark theme, and modern UI design to showcase my work.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 2: Calculator -->
             <div class="project-card fade-in">
                 <div class="project-image">🧮</div>
                 <div class="project-content">
@@ -2458,9 +1665,13 @@
                     </div>
                     <h3>Calculator App</h3>
                     <p>A functional calculator with basic and scientific operations, clean UI, and keyboard support.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 3: To-Do List -->
             <div class="project-card fade-in">
                 <div class="project-image">✅</div>
                 <div class="project-content">
@@ -2471,9 +1682,13 @@
                     </div>
                     <h3>To-Do List App</h3>
                     <p>A simple task manager with add, edit, delete features and local storage to save tasks in the browser.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 4: Python File Organizer -->
             <div class="project-card fade-in">
                 <div class="project-image">📁</div>
                 <div class="project-content">
@@ -2481,10 +1696,14 @@
                         <span class="project-tag">Python</span>
                     </div>
                     <h3>File Organizer Script</h3>
-                    <p>A Python script that automatically sorts files into folders based on their file type.</p>
+                    <p>A Python script that automatically sorts files into folders based on their file type (images, documents, videos, etc.).</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 5: Quiz Game -->
             <div class="project-card fade-in">
                 <div class="project-image">❓</div>
                 <div class="project-content">
@@ -2494,10 +1713,14 @@
                         <span class="project-tag">JavaScript</span>
                     </div>
                     <h3>Quiz Game</h3>
-                    <p>An interactive quiz application with multiple choice questions, score tracking, and timer.</p>
+                    <p>An interactive quiz application with multiple choice questions, score tracking, and timer functionality.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 6: Weather App -->
             <div class="project-card fade-in">
                 <div class="project-image">🌤️</div>
                 <div class="project-content">
@@ -2507,10 +1730,14 @@
                         <span class="project-tag">JavaScript</span>
                     </div>
                     <h3>Weather App</h3>
-                    <p>A weather application that fetches real-time data using a free API.</p>
+                    <p>A weather application that fetches real-time data using a free API and displays current conditions.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 7: Student Record System -->
             <div class="project-card fade-in">
                 <div class="project-image">🎓</div>
                 <div class="project-content">
@@ -2518,10 +1745,14 @@
                         <span class="project-tag">C</span>
                     </div>
                     <h3>Student Record System</h3>
-                    <p>A console-based program to add, view, search, and delete student records.</p>
+                    <p>A console-based program to add, view, search, and delete student records with file handling.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 8: Number Guessing Game -->
             <div class="project-card fade-in">
                 <div class="project-image">🎲</div>
                 <div class="project-content">
@@ -2529,10 +1760,14 @@
                         <span class="project-tag">Python</span>
                     </div>
                     <h3>Number Guessing Game</h3>
-                    <p>A fun Python game where the computer picks a random number and gives hints.</p>
+                    <p>A fun Python game where the computer picks a random number and gives hints until you guess it right.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
             
+            <!-- Project 9: Landing Page -->
             <div class="project-card fade-in">
                 <div class="project-image">🚀</div>
                 <div class="project-content">
@@ -2541,7 +1776,10 @@
                         <span class="project-tag">CSS</span>
                     </div>
                     <h3>Product Landing Page</h3>
-                    <p>A modern, responsive landing page design with smooth scroll and animations.</p>
+                    <p>A modern, responsive landing page design for a fictional product with smooth scroll and animations.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Code →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2559,19 +1797,19 @@
             <div class="service-card fade-in">
                 <div class="service-icon">🌐</div>
                 <h3>Website Development</h3>
-                <p>Clean, responsive websites using HTML, CSS, and JavaScript. Perfect for portfolios and landing pages.</p>
+                <p>Clean, responsive websites using HTML, CSS, and JavaScript. Perfect for portfolios, landing pages, and small business sites.</p>
             </div>
             
             <div class="service-card fade-in">
                 <div class="service-icon">🐍</div>
                 <h3>Python Projects</h3>
-                <p>Simple automation scripts, file organizers, and basic programs for everyday tasks.</p>
+                <p>Simple automation scripts, file organizers, and basic programs to help with everyday tasks and college projects.</p>
             </div>
             
             <div class="service-card fade-in">
                 <div class="service-icon">💻</div>
                 <h3>College Projects</h3>
-                <p>Help with programming assignments in C, C++, Java, and Python with documentation.</p>
+                <p>Help with programming assignments in C, C++, Java, and Python. From basic programs to mini-projects with documentation.</p>
             </div>
         </div>
     </section>
@@ -2587,7 +1825,7 @@
         <div class="contact-container">
             <div class="contact-info fade-in">
                 <h3>Ready to Start?</h3>
-                <p>I'm always excited to work on new projects and collaborate with amazing people. Feel free to reach out!</p>
+                <p>I'm always excited to work on new projects and collaborate with amazing people. Whether you need a website, an app, or just want to chat about tech – feel free to reach out!</p>
                 
                 <div class="contact-methods">
                     <a href="mailto:joshirudra0509@gmail.com" class="contact-method">
@@ -2624,31 +1862,33 @@
                 </div>
             </div>
             
-            <div class="contact-form fade-in">
-                <form id="contactForm" action="https://formsubmit.co/joshirudra0509@gmail.com" method="POST">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" name="name" placeholder="Your Name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Your Email</label>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Your Message</label>
-                        <textarea name="message" placeholder="Your Message" required></textarea>
-                    </div>
-
-                    <input type="hidden" name="_subject" value="New Portfolio Message">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-
-                    <button type="submit" class="submit-btn">Send Message →</button>
-                </form>
-            </div>
+           <div class="contact-form fade-in">
+    <form id="contactForm" action="https://formsubmit.co/joshirudra0509@gmail.com" method="POST">
+        
+        <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="Your Name" required>
         </div>
+
+        <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Your Message</label>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+        </div>
+
+        <!-- Step 3: Hidden inputs -->
+        <input type="hidden" name="_subject" value="New Portfolio Message">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <button type="submit" class="submit-btn">Send Message →</button>
+    </form>
+</div>
+
     </section>
 
     <!-- Footer -->
@@ -2781,6 +2021,7 @@
             });
         });
 
+
         // Navbar Background on Scroll
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
@@ -2825,195 +2066,30 @@
         if (statsSection) statsObserver.observe(statsSection);
 
         // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.querySelector('.nav-links');
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navLinks = document.querySelector('.nav-links');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
+// Close menu when clicking a link
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
 
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mobileMenuBtn.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
-
-        // ==========================================
-        // GOD LEVEL HOVER EFFECTS - DESKTOP
-        // ==========================================
-
-        // Magnetic Hover Effect for Cards
-        if (isDesktop()) {
-            document.querySelectorAll('.skill-card, .project-card, .service-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = ((e.clientX - rect.left) / rect.width) * 100;
-                    const y = ((e.clientY - rect.top) / rect.height) * 100;
-                    card.style.setProperty('--mouse-x', x + '%');
-                    card.style.setProperty('--mouse-y', y + '%');
-                });
-            });
-
-            // Ripple Effect on Click
-            document.querySelectorAll('.btn, .social-link, .skill-card, .project-card, .service-card').forEach(el => {
-                el.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = e.clientX - rect.left - size / 2 + 'px';
-                    ripple.style.top = e.clientY - rect.top - size / 2 + 'px';
-                    
-                    this.style.position = 'relative';
-                    this.style.overflow = 'hidden';
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => ripple.remove(), 600);
-                });
-            });
-        }
-
-        // ==========================================
-        // MOBILE SCROLL ANIMATIONS
-        // ==========================================
-
-        if (isMobile()) {
-            // Animation types array
-            const mobileAnimations = [
-                'mobile-scroll-fade-up',
-                'mobile-scroll-fade-left',
-                'mobile-scroll-fade-right',
-                'mobile-scroll-scale',
-                'mobile-scroll-rotate',
-                'mobile-scroll-zoom',
-                'mobile-scroll-bounce',
-                'mobile-scroll-flip'
-            ];
-
-            // Apply animations to skill cards
-            document.querySelectorAll('.skill-card').forEach((card, index) => {
-                const animType = index % 2 === 0 ? 'mobile-scroll-fade-left' : 'mobile-scroll-fade-right';
-                card.classList.add(animType);
-                card.classList.add('mobile-stagger-' + ((index % 6) + 1));
-            });
-
-            // Apply animations to project cards
-            document.querySelectorAll('.project-card').forEach((card, index) => {
-                const animType = index % 3 === 0 ? 'mobile-scroll-zoom' : 
-                               index % 3 === 1 ? 'mobile-scroll-bounce' : 'mobile-scroll-flip';
-                card.classList.add(animType);
-                card.classList.add('mobile-stagger-' + ((index % 4) + 1));
-            });
-
-            // Apply animations to service cards
-            document.querySelectorAll('.service-card').forEach((card, index) => {
-                card.classList.add('mobile-scroll-scale');
-                card.classList.add('mobile-stagger-' + (index + 1));
-            });
-
-            // Apply animations to why items
-            document.querySelectorAll('.why-item').forEach((item, index) => {
-                const animType = index % 2 === 0 ? 'mobile-scroll-fade-left' : 'mobile-scroll-fade-right';
-                item.classList.add(animType);
-                item.classList.add('mobile-stagger-' + (index + 1));
-            });
-
-            // Apply animations to contact methods
-            document.querySelectorAll('.contact-method').forEach((method, index) => {
-                method.classList.add('mobile-scroll-fade-left');
-                method.classList.add('mobile-stagger-' + (index + 1));
-            });
-
-            // Apply animations to stat cards
-            document.querySelectorAll('.stat-card').forEach((card, index) => {
-                card.classList.add('mobile-scroll-bounce');
-                card.classList.add('mobile-stagger-' + (index + 1));
-            });
-
-            // Apply animations to section headers
-            document.querySelectorAll('.section-header').forEach(header => {
-                header.classList.add('mobile-scroll-fade-up');
-            });
-
-            // Mobile Scroll Observer
-            const mobileScrollObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { 
-                threshold: 0.15,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            // Observe all mobile animated elements
-            document.querySelectorAll('[class*="mobile-scroll-"]').forEach(el => {
-                mobileScrollObserver.observe(el);
-            });
-
-            // Add tap effect to interactive elements
-            document.querySelectorAll('.skill-card, .project-card, .service-card, .contact-method, .why-item, .btn, .social-link').forEach(el => {
-                el.classList.add('mobile-tap-effect');
-            });
-
-            // Parallax scroll effect for hero on mobile
-            let lastScrollY = 0;
-            const heroGlow = document.querySelector('.profile-glow');
-            const heroRing = document.querySelector('.profile-ring');
-
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                const direction = scrollY > lastScrollY ? 1 : -1;
-                
-                if (heroGlow && scrollY < 800) {
-                    heroGlow.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px))`;
-                }
-                
-                if (heroRing && scrollY < 800) {
-                    heroRing.style.transform = `rotate(${scrollY * 0.5}deg)`;
-                }
-                
-                lastScrollY = scrollY;
-            }, { passive: true });
-
-            // Vibration feedback on tap (if supported)
-            document.querySelectorAll('.btn, .social-link').forEach(el => {
-                el.addEventListener('touchstart', () => {
-                    if (navigator.vibrate) {
-                        navigator.vibrate(10);
-                    }
-                }, { passive: true });
-            });
-        }
-
-        // Reinitialize on resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                // Refresh animations based on new viewport
-                if (isMobile()) {
-                    document.querySelectorAll('[class*="mobile-scroll-"]').forEach(el => {
-                        if (el.getBoundingClientRect().top < window.innerHeight) {
-                            el.classList.add('animate');
-                        }
-                    });
-                }
-            }, 250);
-        });
-    </script>
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+    }
+});
+    </scrip>
 </body>
 </html>
+Thus is my current portfolio you need to do is change the hover effectd to god level and also you need to add animation when scrolling on mobile not on web also dont change the code
